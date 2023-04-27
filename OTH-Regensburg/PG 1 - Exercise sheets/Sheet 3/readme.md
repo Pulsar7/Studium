@@ -1,3 +1,5 @@
+    Bewertung: 100 / 100
+
 # Aufgabe 1: Wechselautomat
 
 Siehe `task_1.c`

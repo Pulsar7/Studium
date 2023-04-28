@@ -1,3 +1,5 @@
+    Bewertung: NOCH KEINE
+
 # 1. Händler
 
 > see: task_1.c

@@ -19,24 +19,20 @@ int get_integer_input() {
 }
 
 int main(int argc, char* argv[]) {
-    int income,value;
-    float taxes = 0.0;
+    int income,value = 10000, state = 1;
+    float taxes = 0.0, tax_rate = 5.0;
+    printf("Enter your income:\n");
     income = get_integer_input();
+    int counter = 0;
     if (income != -1) {
-        if (income > 10000) {
-            value = 10000;
-            while (1) {
-                value += 200;
-                if (income > value) {
-
-                } else {
-                    break;
-                }
+        if (income > value) {
+            while (tax_rate < 50 && state == 1) {
+                
             }
         } else {
             taxes = 0;
         }
-        printf("You have to pay %f €\n",taxes);
+        printf("You have to pay %.1f €\n",taxes);
     } else {
         printf("Invalid income!\n");
     }

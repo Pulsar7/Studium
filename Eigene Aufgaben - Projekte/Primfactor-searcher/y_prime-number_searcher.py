@@ -11,21 +11,26 @@ def main() -> None:
     x:list[int] = []
     y:list[int] = []
     max_number:int = 100
-    for n in range(0,1000,10):
+    last_highest_num:int = max_number
+    for n in range(0,10000,100):
         max_number += n
-        not_prim_counter:int = 0
+        last_highest_num = max_number-n
+        not_prim_counter:int = 2 # 0 and 1
         prim_counter:int = 0
-        for number in range(2,max_number,1):
+        sys.stdout.write("\r [*] Searching for prime-numbers from 2 to %s..."%(max_number))
+        sys.stdout.flush()
+        for number in range(last_highest_num,max_number,1):
             prim_state:int = 1
-            for i in range(2,int(math.sqrt(number)),1):
-                if number%i == 0 and i != 1:
+            for i in range(2,number,1):
+                if number%i == 0:
                     prim_state = 0
                     not_prim_counter += 1
                     break
             if prim_state == 1:
                 prim_counter += 1
+                # print("%s is a prime-number"%(number))
         percentage:float = (100/max_number)*prim_counter;
-        print("(%s) Primnumbers: %s | Not Primnumbers: %s | Percentage of Primnumbers: %s percent"%(max_number,prim_counter,not_prim_counter,percentage))
+        print("Prime numbers: %s => %s percent"%(prim_counter,percentage))
         y.append(percentage)
         x.append(max_number)
     plt.plot(x,y) 

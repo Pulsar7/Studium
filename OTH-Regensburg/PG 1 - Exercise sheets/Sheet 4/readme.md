@@ -1,4 +1,4 @@
-    Bewertung: NOCH KEINE
+    Bewertung: 100/100
 
 # 1. Händler
 

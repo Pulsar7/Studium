@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
                 }
                 value += 200;
                 tax_rate += 0.2;
-                printf("Tax-Rate: %f\n",tax_rate);
+                // printf("Tax-Rate: %f\n",tax_rate);
             } else {
                 break;
             }

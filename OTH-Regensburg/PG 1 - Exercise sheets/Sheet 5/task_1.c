@@ -19,20 +19,32 @@ int get_integer_input() {
 }
 
 int main(int argc, char* argv[]) {
-    int income,value = 10000, state = 1;
-    float taxes = 0.0, tax_rate = 5.0;
+    int income,value = 10000,state = 1;
+    float taxes = 0.0, tax_rate = 5.0, too_much = 0.0;
     printf("Enter your income:\n");
     income = get_integer_input();
     int counter = 0;
     if (income != -1) {
-        if (income > value) {
-            while (tax_rate < 50 && state == 1) {
-                
+        while (tax_rate < 50) {
+            if (income > value) {
+                too_much = income-value;
+                if (too_much >= 200) {
+                    taxes += 2*tax_rate;
+                    if (too_much == 200) {
+                        break;
+                    }
+                } else {
+                    taxes += (too_much/100)*tax_rate;
+                    break;
+                }
+                value += 200;
+                tax_rate += 0.2;
+                printf("Tax-Rate: %f\n",tax_rate);
+            } else {
+                break;
             }
-        } else {
-            taxes = 0;
         }
-        printf("You have to pay %.1f €\n",taxes);
+        printf("You have to pay %.1f for taxes.\n",taxes);
     } else {
         printf("Invalid income!\n");
     }

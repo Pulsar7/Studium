@@ -1,4 +1,4 @@
-    Bewertung: 100 / 100
+
 
 # Aufgabe 1 - Fehler finden
 

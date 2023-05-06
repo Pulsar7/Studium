@@ -1,4 +1,4 @@
-    Bewertung: 
+
 
 # 1. Steuern
 

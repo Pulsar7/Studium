@@ -1,4 +1,4 @@
 # OTH-Regensburg
 
-- Aufgabenblätter/Übungen von Programmieren 1 - SoSe 2023
+- Aufgabenblätter/Übungen von Programmieren 1
 

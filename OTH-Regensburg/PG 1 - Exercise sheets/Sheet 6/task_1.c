@@ -2,7 +2,11 @@
 
 
 int calculate_coins(int amount, int coins) {
-    return amount*100/coins;
+    if (coins != 0) {
+        return amount*100/coins;
+    } else {
+        return -1;
+    }
 }
 
 int main(int argc, char *argv[]) {

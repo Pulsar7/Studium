@@ -11,13 +11,13 @@ class COLORED_OUTPUT {
     public:
         string white = "\x1b[37m", red = "\x1b[31m", blue = "\x1b[94m", yellow = "\x1b[93m", reset = "\x1b[39m";
     
-    string info(string text) {
-        return white+"["+yellow+"INFO"+white+"] "+text+reset;
-    } 
+        string info(string text) {
+            return white+"["+yellow+"INFO"+white+"] "+text+reset;
+        } 
 
-    string error(string text) {
-        return white+"["+red+"ERROR"+white+"] "+red+text+reset;
-    }
+        string error(string text) {
+            return white+"["+red+"ERROR"+white+"] "+red+text+reset;
+        }
 };
 
 

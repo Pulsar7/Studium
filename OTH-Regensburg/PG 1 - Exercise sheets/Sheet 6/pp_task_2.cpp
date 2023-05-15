@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
     for (int rounds = 0; rounds < MAX_ROUNDS; rounds++) {
         for (dices = 0; dices < max_dices; dices++) {
             dice.rolls[dices] = dice.roll();
+            cout << dice.rolls[dices] << endl;
             cout << co.info(to_string(dices)+" -> number: "+to_string(dice.rolls[dices])) << endl;
         }
         while (max_dices > 1) {

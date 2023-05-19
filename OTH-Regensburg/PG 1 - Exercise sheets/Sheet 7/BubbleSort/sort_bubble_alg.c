@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX_INTEGERS 100
+#define MAX_INTEGERS 500
 
 
 int get_integer(void) {
@@ -67,9 +67,9 @@ int pseud_rand(void) {
 
 int main(int argc, const char **argv) {
     srand(time(NULL));
-    int counter = 0, array[10000] = {0};
-    for (int r = 0; r <= 99999; r++) {
-        for (int a = 0; a <= 10000; a++) {
+    int counter = 0, array[MAX_INTEGERS] = {0};
+    for (int r = 0; r < MAX_INTEGERS; r++) {
+        for (int a = 0; a <= MAX_INTEGERS; a++) {
             array[a] = pseud_rand();
         }
         sort_array(array,counter);

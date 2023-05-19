@@ -37,7 +37,7 @@ int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
                 next = array[counter+1];
                 array[counter] = next;
                 array[counter+1] = current;
-                // array[counter],array[counter+1] = array[counter+1],array[counter]; // NOT?! the same 
+                array[counter],array[counter+1] = array[counter+1],array[counter]; // NOT?! the same  CHATGPT
             } else {
                 not_changed++;
             }
@@ -52,14 +52,6 @@ int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("O.K.\n");
-    /*for (int i = 0; i < length; i++) {
-        if (i+1 == length) {
-            printf("%d",array[i]);
-        } else {
-            printf("%d,",array[i]);
-        }
-    }
-    printf("\n");*/
     // printf("Elements=%d | CPU-time-used=%f\n",length,cpu_time_used);
     FILE *file;
     file = fopen("bubble_sort_times.txt", "a"); // Open the file in write mode
@@ -75,51 +67,13 @@ int pseud_rand(void) {
 
 int main(int argc, const char **argv) {
     srand(time(NULL));
-    int counter = 0, array[2500] = {0};
-    for (int a = 0; a <= 2500; a++) {
-        array[a] = pseud_rand();
-    }
-    for (int r = 0; r <= 2499; r++) {
+    int counter = 0, array[10000] = {0};
+    for (int r = 0; r <= 99999; r++) {
+        for (int a = 0; a <= 10000; a++) {
+            array[a] = pseud_rand();
+        }
         sort_array(array,counter);
         counter++;
     }
-    /*int my_numbers[MAX_INTEGERS],counter = 0,number;
-    while (counter <= MAX_INTEGERS) {
-        number = get_integer();
-        if (number != -1) {
-            my_numbers[counter] = number;
-        } else {
-            // printf("Input error!\n");
-            break;
-        }
-        counter++;
-    }
-    int maximum = 0,minimum = 0;
-    float sum = 0.0,average = 0.0;
-    for (int i; i < counter; i++) {
-        if (i == 0) {
-            minimum = my_numbers[i];
-        }
-        sum += my_numbers[i];
-        if (my_numbers[i] > maximum) {
-            maximum = my_numbers[i];
-        } else if (my_numbers[i] < minimum) {
-            minimum = my_numbers[i];
-        }
-    }
-    average = (sum/(float)counter);
-    printf("Minium: %d\n",minimum);
-    printf("Maximum: %d\n",maximum);
-    printf("Average: %f\n",average);
-    printf("Unsorted Integer-Array: ");
-    for (int i = 0; i < counter; i++) {
-        if (i+1 == counter) {
-            printf("%d",my_numbers[i]);
-        } else {
-            printf("%d,",my_numbers[i]);
-        }
-    }
-    printf("\nSorted Integer-Array: ");
-    sort_array(my_numbers,counter); // return obj*/
     return 0;
 }

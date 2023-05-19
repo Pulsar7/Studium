@@ -22,13 +22,13 @@ def main() -> None:
     plt.plot(elements,calculation_time)
     plt.plot(elements,average_calc_time,label="Average calculation time in seconds")
     plt.plot(elements,expected_calc_times,label="Expected calculation time in seconds")
-    plt.xticks(np.arange(min(elements), max(elements), step=100))
+    plt.xticks(np.arange(min(elements), max(elements), step=1))
     plt.ylabel("Calculation time in seconds")
     plt.xlabel("Amount of elements")
     plt.title("Visualizing the Bubble-sorting-Algorithm")
     plt.grid(True)
     plt.legend()
-    plt.savefig("graph.png")
+    plt.show()
 
 filepath:str = 'bubble_sort_times.txt'
 

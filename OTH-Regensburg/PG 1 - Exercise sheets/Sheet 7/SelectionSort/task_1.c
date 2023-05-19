@@ -20,31 +20,20 @@ int get_integer(void) {
     return num;
 }
 
-int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
-    int counter = 0,current,next,not_changed = 0;
-    while (not_changed <= length) {
-        if (counter == 0) {
-            not_changed = 0;
-        }
-        if ((counter+1) <= length-1) {
-            if (array[counter] > array[counter+1]) {
-                current = array[counter];
-                next = array[counter+1];
-                array[counter] = next;
-                array[counter+1] = current;
-                // array[counter],array[counter+1] = array[counter+1],array[counter]; // NOT?! the same 
-            } else {
-                not_changed++;
+int sort_array(int *array, int length) { // using the "Selection-Sort-Algorithm"
+    int i, j, minIndex, temp;
+    for (i = 0; i < length - 1; i++) {
+        minIndex = i;
+        for (j = i + 1; j < length; j++) {
+            if (array[j] < array[minIndex]) {
+                minIndex = j;
             }
-        } else {
-            not_changed++;
         }
-        counter++;
-        if (counter > length) {
-            counter = 0;
-        }
+        temp = array[i];
+        array[i] = array[minIndex];
+        array[minIndex] = temp;
     }
-    printf("O.K.\n");
+
     for (int i = 0; i < length; i++) {
         if (i+1 == length) {
             printf("%d",array[i]);
@@ -95,6 +84,6 @@ int main(int argc, const char **argv) {
         }
     }
     printf("\nSorted Integer-Array: ");
-    sort_array(my_numbers,counter); // return obj*/
+    sort_array(my_numbers,counter); // return obj
     return 0;
 }

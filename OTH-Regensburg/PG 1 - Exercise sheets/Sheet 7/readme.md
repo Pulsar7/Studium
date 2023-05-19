@@ -1,6 +1,6 @@
 # Arrays
 
-Der gefragte Sortier-Algorithmus ist wahrscheinlich der **Slection-Sort-Algorithm**
+Der gefragte Sortier-Algorithmus ist wahrscheinlich der **Selection-Sort-Algorithm**
 
 > see: 'SelectionSort/task_1.c'
 

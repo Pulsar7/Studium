@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #define MAX_INTEGERS 100
 
 
@@ -19,9 +21,13 @@ int get_integer(void) {
     return num;
 }
 
-int sort_array(int *array, int length) { // inefficient
+int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
+    printf("Sorting array with length %d...",length);
     int counter = 0,current,next,not_changed = 0;
-    while (not_changed < length) {
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
+    while (not_changed <= length) {
         if (counter == 0) {
             not_changed = 0;
         }
@@ -31,6 +37,7 @@ int sort_array(int *array, int length) { // inefficient
                 next = array[counter+1];
                 array[counter] = next;
                 array[counter+1] = current;
+                // array[counter],array[counter+1] = array[counter+1],array[counter]; // NOT?! the same 
             } else {
                 not_changed++;
             }
@@ -42,16 +49,41 @@ int sort_array(int *array, int length) { // inefficient
             counter = 0;
         }
     }
-    for (int i = 0; i < length; i++) {
-        printf("%d,",array[i]);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("O.K.\n");
+    /*for (int i = 0; i < length; i++) {
+        if (i+1 == length) {
+            printf("%d",array[i]);
+        } else {
+            printf("%d,",array[i]);
+        }
     }
-    printf("\n");
+    printf("\n");*/
+    // printf("Elements=%d | CPU-time-used=%f\n",length,cpu_time_used);
+    FILE *file;
+    file = fopen("bubble_sort_times.txt", "a"); // Open the file in write mode
+    fprintf(file, "%d,%f\n", length, cpu_time_used);
+    fclose(file);
     return 0;
+}
+
+int pseud_rand(void) {
+    return ((rand()%2500)+0); // pseudorandom
 }
 
 
 int main(int argc, const char **argv) {
-    int my_numbers[MAX_INTEGERS],counter = 0,number;
+    srand(time(NULL));
+    int counter = 0, array[2500] = {0};
+    for (int a = 0; a <= 2500; a++) {
+        array[a] = pseud_rand();
+    }
+    for (int r = 0; r <= 2499; r++) {
+        sort_array(array,counter);
+        counter++;
+    }
+    /*int my_numbers[MAX_INTEGERS],counter = 0,number;
     while (counter <= MAX_INTEGERS) {
         number = get_integer();
         if (number != -1) {
@@ -79,11 +111,15 @@ int main(int argc, const char **argv) {
     printf("Minium: %d\n",minimum);
     printf("Maximum: %d\n",maximum);
     printf("Average: %f\n",average);
-    printf("Unsorted Integer-Array:\n");
+    printf("Unsorted Integer-Array: ");
     for (int i = 0; i < counter; i++) {
-        printf("%d,",my_numbers[i]);
+        if (i+1 == counter) {
+            printf("%d",my_numbers[i]);
+        } else {
+            printf("%d,",my_numbers[i]);
+        }
     }
-    printf("\nSorted Integer-Array:\n");
-    sort_array(my_numbers,counter); // return obj
+    printf("\nSorted Integer-Array: ");
+    sort_array(my_numbers,counter); // return obj*/
     return 0;
 }

@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX_INTEGERS 500
+#define MAX_INTEGERS 5000
+#define MAX_ROUNDS 1000
 
 
 int get_integer(void) {
@@ -22,10 +23,9 @@ int get_integer(void) {
 }
 
 int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
-    printf("Sorting array with length %d...",length);
-    int counter = 0,current,next,not_changed = 0;
     clock_t start, end;
     double cpu_time_used;
+    int counter = 0,current,next,not_changed = 0;
     start = clock();
     while (not_changed <= length) {
         if (counter == 0) {
@@ -37,7 +37,6 @@ int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
                 next = array[counter+1];
                 array[counter] = next;
                 array[counter+1] = current;
-                array[counter],array[counter+1] = array[counter+1],array[counter]; // NOT?! the same  CHATGPT
             } else {
                 not_changed++;
             }
@@ -49,31 +48,52 @@ int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
             counter = 0;
         }
     }
+    /*printf("\n");
+    for (int r = 0; r < length; r++) {
+        printf("%d ",array[r]);
+    }
+    printf("\n");*/
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("O.K.\n");
     // printf("Elements=%d | CPU-time-used=%f\n",length,cpu_time_used);
-    FILE *file;
-    file = fopen("bubble_sort_times.txt", "a"); // Open the file in write mode
-    fprintf(file, "%d,%f\n", length, cpu_time_used);
-    fclose(file);
-    return 0;
+    return cpu_time_used;
 }
 
-int pseud_rand(void) {
-    return ((rand()%2500)+0); // pseudorandom
+long int pseud_rand(void) {
+    // printf("%d\n",rand());
+    return ((rand()%9223372036854775807)+rand()); // pseudorandom
 }
 
 
 int main(int argc, const char **argv) {
     srand(time(NULL));
-    int counter = 0, array[MAX_INTEGERS] = {0};
-    for (int r = 0; r < MAX_INTEGERS; r++) {
+    int counter = 0, array[MAX_INTEGERS] = {0},rounds;
+    float calculation_time = 0.0, average_calculation_time = 0.0;
+    FILE *file;
+    file = fopen("bubble_sort_times.txt", "w");
+    fprintf(file, "\r");
+    fclose(file);
+    for (int r = 0; r <= MAX_INTEGERS; r++) {
+        printf("The array with length %d is sorted %d times...",counter,MAX_ROUNDS);
         for (int a = 0; a <= MAX_INTEGERS; a++) {
             array[a] = pseud_rand();
         }
-        sort_array(array,counter);
+        for (rounds = 0; rounds <= MAX_ROUNDS; rounds++) {
+            calculation_time += sort_array(array,counter);
+            // printf("ROUND %d\n",rounds);
+        }
+        average_calculation_time = calculation_time/MAX_ROUNDS;
+        if (r == 3000) {
+            printf("%f %d\n",calculation_time,MAX_ROUNDS);
+            break;
+        }
+        file = fopen("bubble_sort_times.txt", "a");
+        fprintf(file, "%d,%f\n", counter, average_calculation_time);
+        fclose(file);
         counter++;
+        average_calculation_time = 0.0;
+        calculation_time = 0.0;
+        printf("O.K.\n");
     }
     return 0;
 }

@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+    </head>
+    <body>
+        <h2>Einleitung</h2>
+        <p>
+            Das heutige Projekt beschäftigt sich mit Sortieralgorithmen und deren Effizienz.
+        </p>
+
+        <h2>Bubble-Sort-Algorithmus</h2>
+        <p>
+            Das Prinzip sehr leicht zu verstehen und es ist auch sehr schnell zu erkennen wie ineffizient 
+            dieser Sortieralgorithmus ist. Gegeben sind beispielsweise 3 Zahlen in einer eher ungeordneten 
+            Reihenfolge: 7, 5, 3. Um nun die Zahlen von der Größe nach zu sortieren, geht der Algorithmus 
+            folgendermaßen vor:
+        </p>
+        <ul>
+            <li>7, 5, 3</li>
+            <li>5, 7, 3</li>
+            <li>5, 3, 7</li>
+            <li>3, 5, 7</li>
+        </ul>
+        <p>Es wird beispielsweise die Zahl <b>7</b> ausgewählt und geprüft, ob sie größer als die 
+            nächste Zahl - in diesem Fall die <b>5</b> ist. 
+            Dann geht es immer so weiter bis die richtige Reihenfolge 
+            erreicht wurde. Wie oben schon erwähnt wurde, ist dieser Algorithmus sehr ineffizient für 
+            längere Zahlenreihen. Natürlich kann ein Computer dieses simple Prinzip schnell durchführen. 
+            Je größer die Zahlenreihen jedoch werden, kann man auch bei der Rechendauer einen 
+            exponentiellen Anstieg erkennen. 
+            Als Beispiel habe ich ein <b>C-Programm</b> geschrieben:
+        </p>
+        <pre class="prettyprint">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+        </pre>
+        <p>Die Header-Datei <code>time.h</code> wird benötigt um später pseudorandomisiert Zahlen
+        in einem bestimmten Intervall auszuwählen. Damit nicht bei jedem Programmstart die gleichen Zahlen
+        ausgewählt werden, wird die Funktion <code>srand()</code> benutzt:
+        </p>
+        <pre class="prettyprint">int main(int argc, const char **argv) {
+    srand(time(NULL));
+    int counter = 0, array[MAX_INTEGERS] = {0};
+    for (int r = 0; r < MAX_INTEGERS; r++) {
+        for (int a = 0; a <= MAX_INTEGERS; a++) {
+            array[a] = pseud_rand();
+        }
+        sort_array(array,counter);
+        counter++;
+    }
+    return 0;
+}</pre>
+        <p>Die ausgewählten Zahlen sollen in ein <b>integer-Array</b> gespeichert werden, dessen Größe zu Beginn definiert wurde: <code>#define MAX_INTEGERS 10000</code>.
+        Als Beispiel habe ich hier 10000 ausgewählt.</p>
+        Damit auch nicht immer die gleichen Zahlenfolgen vom Computer sortiert werden, werden alle Zahlen im Array
+        jedes Mal neu angeordnet, bzw. "generiert". Dabei habe ich die <code>pseud_rand()</code>-Funktion sehr kurz gehalten:
+        <pre class="prettyprint">int pseud_rand(void) {
+    return ((rand()%10000000)+0); // pseudorandom
+}
+        </pre>
+        <p>Als </p>
+    </body>
+</html>

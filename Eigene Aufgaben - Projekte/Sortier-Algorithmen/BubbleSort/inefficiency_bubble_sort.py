@@ -26,7 +26,7 @@ def main() -> None:
     # plt.plot(elements,expected_case_calc_times,label="Expected calculation time in seconds",color="black")
     plt.plot(elements,calculation_time,label="Actual calculation time in seconds",color="royalblue")
     plt.fill_between(x = elements, y1 = 0, color="b",alpha=0.2)
-    plt.xticks(np.arange(min(elements), max(elements)+10, step=10))
+    plt.xticks(np.arange(min(elements), max(elements)+10, step=100))
     plt.ylabel("Calculation time in seconds")
     plt.xlabel("Amount of elements")
     plt.title("Visualizing the Bubble-sorting-Algorithm")

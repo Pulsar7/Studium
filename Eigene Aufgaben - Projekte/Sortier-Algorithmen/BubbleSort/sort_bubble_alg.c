@@ -61,7 +61,7 @@ int sort_array(int *array, int length) { // inefficient: Bubble Sort -> O(n²)
 
 long int pseud_rand(void) {
     // printf("%d\n",rand());
-    return ((rand()%9223372036854775807)+rand()); // pseudorandom
+    return ((rand()%9223372036854775807)+0); // pseudorandom
 }
 
 
@@ -80,13 +80,8 @@ int main(int argc, const char **argv) {
         }
         for (rounds = 0; rounds <= MAX_ROUNDS; rounds++) {
             calculation_time += sort_array(array,counter);
-            // printf("ROUND %d\n",rounds);
         }
         average_calculation_time = calculation_time/MAX_ROUNDS;
-        if (r == 3000) {
-            printf("%f %d\n",calculation_time,MAX_ROUNDS);
-            break;
-        }
         file = fopen("bubble_sort_times.txt", "a");
         fprintf(file, "%d,%f\n", counter, average_calculation_time);
         fclose(file);

@@ -4,9 +4,6 @@
 #define STAFF_NUMBER_LEN 20
 
 
-int list_elements = 0;
-STAFF *current_pointer = NULL, *head_pointer;
-
 // constants
 const char *white = "\x1b[37m", *green = "\x1b[32m", 
     *yellow = "\x1b[33m", *reset = "\x1b[39m", *red = "\x1b[31m";
@@ -14,6 +11,18 @@ const char *white = "\x1b[37m", *green = "\x1b[32m",
 const char options[5][10] = {
     "Add","Delete","Edit","Show","Quit"
 };
+
+// enumerations
+typedef enum {true=1,false=0} BOOLEAN;
+
+// structs
+typedef struct STAFF {
+    char surname[MAX_EMPLOYEE_SURNAME_LEN];
+    float salary;
+    int staff_number;
+    struct STAFF *next;
+    struct STAFF *previous;
+} STAFF;
 
 // colored-output - Functions
 void info(char *message);
@@ -27,17 +36,9 @@ BOOLEAN add_new_staff(void);
 int generate_staff_number(void);
 BOOLEAN check_if_staff_number_exists(int staff_number);
 BOOLEAN delete_all_employees(void);
+BOOLEAN delete_one_employee(int staff_number);
 
-// enumerations
-typedef enum {true=1,false=0} BOOLEAN;
-
-// structs
-typedef struct STAFF {
-    char surname[MAX_EMPLOYEE_SURNAME_LEN];
-    float salary;
-    int staff_number;
-    struct STAFF *next;
-    struct STAFF *previous;
-} STAFF;
+int list_elements = 0;
+STAFF *current_pointer = NULL, *head_pointer;
 
 #endif

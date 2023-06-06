@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <string.h>
 #include "manager.h"
 #define MAX_NUMBER 100000000
 
 // 
 
 void info(char *message) {
-    printf("%s[%sINFO%s]%s %s\n",white,yellow,white,reset);
+    printf("%s[%sINFO%s]%s %s\n",white,yellow,white,reset,message);
 }
 
 void error(char *message) {
-    printf("%s[%sERROR%s]%s %s\n",white,red,white,reset);
+    printf("%s[%sERROR%s]%s %s\n",white,red,white,reset,message);
 }
 
 void success(void) {
@@ -23,7 +24,7 @@ void failed(void) {
 }
 
 void progress(char *message) {
-    printf("%s[%sINFO%s]%s %s...",white,yellow,white,reset);
+    printf("%s[%sINFO%s]%s %s...",white,yellow,white,reset,message);
 }
 
 //
@@ -58,11 +59,52 @@ STAFF* create_staff(char *surname, float salary, int staff_number) {
 }
 
 BOOLEAN delete_all_employees(void) {
-    STAFF* current = head_pointer;
+    BOOLEAN status;
+    STAFF *current = head_pSTAFF *current_pointer = NULL, *head_pointer;ointer;
     while (current->next != NULL) {
+        status = delete_one_employee(current->staff_number);
+        if (status == false) {
+            break;
+        }
         current = current->next;
-        free(current);
     }
+    return status;
+}
+
+
+BOOLEAN delete_one_employee(int staff_number) {
+    BOOLEAN status = true;
+    progress("Deleting employee...");
+    if (check_if_staff_number_exists(staff_number) == true) {
+        STAFF *current = head_pointer;
+        while (current != NULL) {
+            if (current->staff_number == staff_number) {
+                break;
+            }
+            current = current->next;
+        }
+        if (current != NULL) {
+            if (current->next == NULL) { // last element of list
+                current->previous->next = NULL;
+            } else if(current->previous == NULL) { // first element of list
+                current->next->previous = NULL;
+            } else { // between two elements in list
+                current->next->previous = current->previous;
+                current->previous->next = current->next;
+            }
+            free(current);
+            list_elements--;
+        } else {
+            failed();
+            error("An error occured while trying to get pointer of staff-member in linked list!");
+            status = false;
+        }
+    } else {
+        failed();
+        error("There is no employee with that staff-number!");
+        status = false;
+    }
+    return status;
 }
 
 BOOLEAN check_if_staff_number_exists(int staff_number) {

@@ -21,7 +21,16 @@ BOOLEAN menu(void) {
             case 'A': // Add staff
                 add_new_staff(); 
                 break;
-            case 'D': // Delete staff
+            case 'D': // Delete staff (one)
+                int staff_number;
+                info("Enter the staff-number of the employee you want to delete> ");
+                scanf("%20d",&staff_number);
+                BOOLEAN status = delete_one_employee(staff_number);
+                if (status == true) {
+                    info("Deleted staff");
+                } else {
+                    error("Couldn't delete staff");
+                }
                 break;
             case 'E': // Edit staff
                 break;
@@ -42,9 +51,11 @@ BOOLEAN menu(void) {
 
 int main(int argc, const char **argv) {
     BOOLEAN running = true;
+    info("Started programm.");
     while (running == true) {
         running = menu();
     }
+    running = delete_all_employees(); // free HEAP
     info("Closed programm.");
     return 0;
 }

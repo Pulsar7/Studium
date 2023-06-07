@@ -4,14 +4,6 @@
 #define STAFF_NUMBER_LEN 20
 
 
-// constants
-const char *white = "\x1b[37m", *green = "\x1b[32m", 
-    *yellow = "\x1b[33m", *reset = "\x1b[39m", *red = "\x1b[31m";
-
-const char options[5][10] = {
-    "Add","Delete","Edit","Show","Quit"
-};
-
 // enumerations
 typedef enum {true=1,false=0} BOOLEAN;
 
@@ -37,8 +29,7 @@ int generate_staff_number(void);
 BOOLEAN check_if_staff_number_exists(int staff_number);
 BOOLEAN delete_all_employees(void);
 BOOLEAN delete_one_employee(int staff_number);
-
-int list_elements = 0;
-STAFF *current_pointer = NULL, *head_pointer;
+BOOLEAN edit_staff(int staff_number);
+STAFF* get_staff(int staff_number);
 
 #endif

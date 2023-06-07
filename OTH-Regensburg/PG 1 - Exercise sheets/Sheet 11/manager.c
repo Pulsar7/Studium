@@ -6,6 +6,11 @@
 #define MAX_NUMBER 100000000
 
 // 
+int list_elements = 0;
+STAFF *current_pointer = NULL, *head_pointer;
+
+const char *white = "\x1b[37m", *green = "\x1b[32m", 
+    *yellow = "\x1b[33m", *reset = "\x1b[39m", *red = "\x1b[31m";
 
 void info(char *message) {
     printf("%s[%sINFO%s]%s %s\n",white,yellow,white,reset,message);
@@ -20,11 +25,11 @@ void success(void) {
 }
 
 void failed(void) {
-    printf("%sFAILD%s\n",red,reset);
+    printf("%sFAILED%s\n",red,reset);
 }
 
 void progress(char *message) {
-    printf("%s[%sINFO%s]%s %s...",white,yellow,white,reset,message);
+    printf("%s[%sINFO%s]%s %s",white,yellow,white,reset,message);
 }
 
 //
@@ -58,19 +63,65 @@ STAFF* create_staff(char *surname, float salary, int staff_number) {
     return current->next;
 }
 
-BOOLEAN delete_all_employees(void) {
+BOOLEAN edit_staff(int staff_number) {
     BOOLEAN status;
-    STAFF *current = head_pSTAFF *current_pointer = NULL, *head_pointer;ointer;
-    while (current->next != NULL) {
-        status = delete_one_employee(current->staff_number);
-        if (status == false) {
-            break;
+    if (list_elements > 0) {
+        if (check_if_staff_number_exists(staff_number) == true) {
+            STAFF *staff_pointer = get_staff(staff_number);
+            if (staff_pointer != NULL) {
+                progress("Editing staff...");
+
+                success();
+            } else {
+                error("Staff-Pointer is NULL!");
+                status = false;
+            }
+        } else {
+            failed();
+            error("There is no employee with that staff-number!");
+            status = false;
         }
-        current = current->next;
+    } else {
+        status = false;
+        info("There are no employees to edit. Linked list is empty!");
     }
     return status;
 }
 
+STAFF* get_staff(int staff_number) { // probably the same as 'check_if_staff_exists'
+    BOOLEAN found = false;
+    STAFF *staff_pointer;
+    STAFF *current = head_pointer;
+    while (current != NULL) {
+        if (current->staff_number == staff_number) {
+            found = true;
+            break;
+        }
+        current = current->next;
+    }
+    if (found == false) {
+        staff_pointer = NULL;
+    }
+    return staff_pointer;
+}
+
+BOOLEAN delete_all_employees(void) {
+    BOOLEAN status;
+    if (list_elements > 0) {
+        STAFF *current = head_pointer;
+        while (current->next != NULL) {
+            status = delete_one_employee(current->staff_number);
+            if (status == false) {
+                break;
+            }
+            current = current->next;
+        }
+    } else {
+        status = false;
+        info("There are no employees to delete. Linked list is empty!");
+    }
+    return status;
+}
 
 BOOLEAN delete_one_employee(int staff_number) {
     BOOLEAN status = true;

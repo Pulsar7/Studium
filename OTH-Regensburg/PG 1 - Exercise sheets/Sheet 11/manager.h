@@ -30,6 +30,6 @@ BOOLEAN check_if_staff_number_exists(int staff_number);
 BOOLEAN delete_all_employees(void);
 BOOLEAN delete_one_employee(int staff_number);
 BOOLEAN edit_staff(int staff_number);
-STAFF* get_staff(int staff_number);
+// STAFF* get_staff(int staff_number);
 
 #endif

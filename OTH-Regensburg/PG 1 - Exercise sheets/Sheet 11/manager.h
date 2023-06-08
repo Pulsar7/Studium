@@ -29,7 +29,8 @@ int generate_staff_number(void);
 BOOLEAN check_if_staff_number_exists(int staff_number);
 BOOLEAN delete_all_employees(void);
 BOOLEAN delete_one_employee(int staff_number);
-BOOLEAN edit_staff(int staff_number);
-// STAFF* get_staff(int staff_number);
+BOOLEAN edit_staff(void);
+BOOLEAN show_all_employees(void);
+BOOLEAN show_help(const char options[6][10]);
 
 #endif

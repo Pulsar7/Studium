@@ -70,6 +70,7 @@ STAFF* get_staff(int staff_number) { // probably the same as 'check_if_staff_exi
     while (current != NULL) {
         if (current->staff_number == staff_number) {
             found = true;
+            staff_pointer = current;
             break;
         }
         current = current->next;
@@ -114,14 +115,15 @@ BOOLEAN edit_staff(void) {
             STAFF *staff_pointer = get_staff(staff_number);
             if (staff_pointer != NULL) {
                 printf("%s<%s%d%s> Surname=%s | Salary=%f\n",white,blue,staff_pointer->staff_number,white,staff_pointer->surname,staff_pointer->salary);
-                info("Enter the keyword you want to edit>");
-                char edit_keyword[7];
-                fgets(edit_keyword,7,stdin);
+                info("Enter the keyword you want to edit (Surname or Salary)>");
+                char edit_keyword[15];
+                fgets(edit_keyword,15,stdin);
                 edit_keyword[strlen(edit_keyword)-1] = '\0';
-                progress("Editing staff...");
-                if (edit_keyword == "surname" || edit_keyword == "Surname") {
+                if (strcmp(edit_keyword, "Surname") == 0 || strcmp(edit_keyword, "surname") == 0) {
+                    info("Enter the new Surname>");
                     char new_surname[MAX_EMPLOYEE_SURNAME_LEN];
                     fgets(new_surname,MAX_EMPLOYEE_SURNAME_LEN,stdin);
+                    progress("Editing staff...");
                     new_surname[strlen(new_surname)-1] = '\0';
                     if (new_surname == staff_pointer->surname) {
                         failed();
@@ -131,9 +133,11 @@ BOOLEAN edit_staff(void) {
                         strcpy(staff_pointer->surname, new_surname);
                         success();
                     }
-                } else if (edit_keyword == "salary" || edit_keyword == "Salary") {
+                } else if (strcmp(edit_keyword, "Keyword") == 0 || strcmp(edit_keyword, "keyword") == 0) {
                     float new_salary;
+                    info("Enter the new salary>");
                     scanf("%20f",&new_salary);
+                    progress("Editing staff...");
                     while(getchar() != '\n'); // to ignore \n
                     status = check_salary(new_salary);
                     if (status == true) {
@@ -153,8 +157,10 @@ BOOLEAN edit_staff(void) {
                     } else {
                         // 
                     }
-                } else {
-                    error("That's an invalid option!");
+                }
+                if (strcmp(edit_keyword, "Keyword") != 0 && strcmp(edit_keyword, "keyword") != 0 && strcmp(edit_keyword, "Surname") != 0 && strcmp(edit_keyword, "surname") != 0) {
+                    failed();
+                    error("Invalid keyword!");
                     status = false;
                 }
             } else {

@@ -5,8 +5,8 @@
 #define MAX_USER_COMMAND_LEN 10
 
 
-const char options[6][10] = {
-    "Add\0","Delete\0","Edit\0","Show\0","Help\0","Quit\0"
+const char options[7][10] = {
+    "Add\0","Delete\0","Edit\0","Show\0","Help\0","Quit\0","Clear\0"
 };
 
 
@@ -18,7 +18,7 @@ BOOLEAN menu(void) {
     fgets(user_command,MAX_USER_COMMAND_LEN,stdin);
     user_command[strlen(user_command)-1] = '\0';
     if (strlen(user_command) > 0) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             for (int e = 0; e < strlen(options[i]); e++) {
                 if (options[i][e] == user_command[e]) {
                     valid_command = true;
@@ -63,6 +63,9 @@ BOOLEAN menu(void) {
                 case 'Q': case 'q': // exit programm
                     running = false;
                     info("User wants to exit programm");
+                    break;
+                case 'C': case 'c':
+                    printf("\e[1;1H\e[2J");
                     break;
                 default:
                     info("Invalid option!");

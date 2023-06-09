@@ -133,7 +133,7 @@ BOOLEAN edit_staff(void) {
                         strcpy(staff_pointer->surname, new_surname);
                         success();
                     }
-                } else if (strcmp(edit_keyword, "Keyword") == 0 || strcmp(edit_keyword, "keyword") == 0) {
+                } else if (strcmp(edit_keyword, "Salary") == 0 || strcmp(edit_keyword, "salary") == 0) {
                     float new_salary;
                     info("Enter the new salary>");
                     scanf("%20f",&new_salary);
@@ -158,7 +158,7 @@ BOOLEAN edit_staff(void) {
                         // 
                     }
                 }
-                if (strcmp(edit_keyword, "Keyword") != 0 && strcmp(edit_keyword, "keyword") != 0 && strcmp(edit_keyword, "Surname") != 0 && strcmp(edit_keyword, "surname") != 0) {
+                if (strcmp(edit_keyword, "Salary") != 0 && strcmp(edit_keyword, "salary") != 0 && strcmp(edit_keyword, "Surname") != 0 && strcmp(edit_keyword, "surname") != 0) {
                     failed();
                     error("Invalid keyword!");
                     status = false;
@@ -211,16 +211,23 @@ BOOLEAN delete_one_employee(int staff_number) {
             current = current->next;
         }
         if (current != NULL) {
-            if (current->next == NULL) { // last element of list
+            if (current->next == NULL && current->previous != NULL) {
+                // last element of list
                 current->previous->next = NULL;
-            } else if(current->previous == NULL) { // first element of list
+            } else if (current->previous == NULL && current->next != NULL) { 
+                // first element of list and several elements
                 current->next->previous = NULL;
-            } else { // between two elements in list
+            } else if (current->next != NULL && current->previous != NULL) { 
+                // between two elements in list
                 current->next->previous = current->previous;
                 current->previous->next = current->next;
+            } else if (current->next == NULL && current->previous == NULL) { 
+                // first element of list and only one element
+                head_pointer = NULL;
             }
             free(current);
             list_elements--;
+            success();
         } else {
             failed();
             error("An error occured while trying to get pointer of staff-member in linked list!");
@@ -268,7 +275,7 @@ int generate_staff_number(void) {
 BOOLEAN show_all_employees(void) {
     BOOLEAN status = true;
     STAFF* current = head_pointer;
-    if (current == NULL) {
+    if (current == NULL || list_elements == 0) {
         info("There is no employee!");
     }
     while (current != NULL) {

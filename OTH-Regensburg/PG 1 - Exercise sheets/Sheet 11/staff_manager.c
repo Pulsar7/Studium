@@ -11,7 +11,7 @@ const char options[7][10] = {
 
 
 BOOLEAN menu(void) {
-    BOOLEAN valid_command = false, running = true;
+    BOOLEAN valid_command = false, running = true, status;
     int staff_number;
     char user_command[MAX_USER_COMMAND_LEN];
     info("Enter your command:");
@@ -44,7 +44,7 @@ BOOLEAN menu(void) {
                     info("Enter the staff-number of the employee you want to delete> ");
                     scanf("%20d",&staff_number);
                     while(getchar() != '\n'); // to fetch the '\n'
-                    BOOLEAN status = delete_one_employee(staff_number);
+                    status = delete_one_employee(staff_number);
                     if (status == true) {
                         info("Deleted staff");
                     } else {
@@ -65,7 +65,7 @@ BOOLEAN menu(void) {
                     info("User wants to exit programm");
                     break;
                 case 'C': case 'c':
-                    printf("\e[1;1H\e[2J");
+                    printf("\e[1;1H\e[2J"); // 
                     break;
                 default:
                     info("Invalid option!");

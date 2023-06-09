@@ -31,6 +31,6 @@ BOOLEAN delete_all_employees(void);
 BOOLEAN delete_one_employee(int staff_number);
 BOOLEAN edit_staff(void);
 BOOLEAN show_all_employees(void);
-BOOLEAN show_help(const char options[6][10]);
+BOOLEAN show_help(const char options[7][10]);
 
 #endif

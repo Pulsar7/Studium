@@ -38,7 +38,7 @@ BOOLEAN menu(void) {
         if (valid_command == true) {
             switch(user_command[0]) {
                 case 'A': case 'a': // Add staff
-                    add_new_staff(); 
+                    add_new_staff();
                     break;
                 case 'D': case 'd': // Delete staff (one)
                     info("Enter the staff-number of the employee you want to delete> ");

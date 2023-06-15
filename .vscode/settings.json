@@ -49,6 +49,8 @@
         "streambuf": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "string.h": "c"
+        "string.h": "c",
+        "cstring": "cpp",
+        "questions.h": "c"
     }
 }

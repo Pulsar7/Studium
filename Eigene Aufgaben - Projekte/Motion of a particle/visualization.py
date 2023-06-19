@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 
 filepath:str = 'obj_data.txt'
@@ -16,6 +17,20 @@ data:dict = {
         'y': []
     }
 }
+
+# fig, ax = plt.subplots()
+# scatter = ax.scatter([], [], c='blue')
+
+"""def init():
+    ax.set_xlim(0, 4)
+    ax.set_ylim(4, 8)
+    return scatter,
+
+def update(frame):
+    scatter.set_offsets([[data['1'][frame], data['1'][frame]]])
+    return scatter,
+"""
+# animation = FuncAnimation(fig, update, frames=len(x), init_func=init, blit=True)
 
 for line in Lines:
     args:list[str] = line.strip().split(";")

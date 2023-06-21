@@ -29,4 +29,5 @@ typedef struct SleepEntry {
     Bool memory_of_dream;
 } SleepEntry;
 
+
 #endif

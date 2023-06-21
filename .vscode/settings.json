@@ -51,6 +51,7 @@
         "typeinfo": "cpp",
         "string.h": "c",
         "cstring": "cpp",
-        "questions.h": "c"
+        "questions.h": "c",
+        "database.h": "c"
     }
 }

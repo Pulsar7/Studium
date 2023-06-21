@@ -20,3 +20,7 @@ Bool check_db_filepath(const char *db_filepath) {
     }
     return False;
 }
+
+Bool read_db(const char *db_filepath) {
+    return True;
+}

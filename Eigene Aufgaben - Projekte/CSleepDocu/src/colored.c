@@ -11,6 +11,7 @@ char reset[MAX_COLOR_LEN] = "\x1b[39m";
 char yellow[MAX_COLOR_LEN] = "\x1b[33m";
 char light_white[MAX_COLOR_LEN] = "\x1b[97m";
 char light_red[MAX_COLOR_LEN] = "\x1b[91m";
+char green[MAX_COLOR_LEN] = "\x1b[32m";
 //
 
 
@@ -23,7 +24,7 @@ void progress(const char* format, ...) {
             format++;
             switch (*format) {
                 case 'c': {
-                    int c = va_arg(args, char);
+                    int c = va_arg(args, int);
                     printf("%s%c%s",light_white,c,reset);
                     break;
                 }
@@ -109,9 +110,9 @@ void error(const char* format, ...) {
 }
 
 void failed(void) {
-
+    printf("%sFAILED%s\n",red,reset);
 }
 
 void success(void) {
-
+    printf("%sO.K.%s",green,reset);
 }

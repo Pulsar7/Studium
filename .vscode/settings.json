@@ -52,6 +52,7 @@
         "string.h": "c",
         "cstring": "cpp",
         "questions.h": "c",
-        "database.h": "c"
+        "database.h": "c",
+        "header.h": "c"
     }
 }

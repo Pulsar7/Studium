@@ -27,6 +27,8 @@ typedef struct SleepEntry {
     Bool stress_before_bedtime;
     Bool sick_to_bed;
     Bool memory_of_dream;
+    struct SleepEntry *next;
+    struct SleepEntry *previous;
 } SleepEntry;
 
 

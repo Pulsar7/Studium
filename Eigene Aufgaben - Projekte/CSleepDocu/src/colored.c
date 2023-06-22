@@ -114,5 +114,5 @@ void failed(void) {
 }
 
 void success(void) {
-    printf("%sO.K.%s",green,reset);
+    printf("%sO.K.%s\n",green,reset);
 }

@@ -12,7 +12,7 @@ extern char blue[MAX_COLOR_LEN];
 extern char reset[MAX_COLOR_LEN];
 extern char yellow[MAX_COLOR_LEN];
 extern char light_white[MAX_COLOR_LEN];
-extern char ligh_red[MAX_COLOR_LEN];
+extern char light_red[MAX_COLOR_LEN];
 
 
 // functions

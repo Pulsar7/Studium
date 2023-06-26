@@ -144,7 +144,7 @@ Bool simulate_obj(Object *obj1, Object *obj2, float time) {
     printf("d=%f | R_r=%f\n", distance, (obj1->r + obj2->r));
     if (distance <= (obj1->r + obj2->r)) {
         printf("Collission detected!\n");
-
+        
         // Also wrong -> LeifiPhysik
         float v1 = sqrt(pow(obj1->vx, 2) + pow(obj1->vy, 2));
         float v2 = sqrt(pow(obj2->vx, 2) + pow(obj2->vy, 2));

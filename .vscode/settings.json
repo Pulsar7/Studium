@@ -53,6 +53,7 @@
         "cstring": "cpp",
         "questions.h": "c",
         "database.h": "c",
-        "header.h": "c"
+        "header.h": "c",
+        "game.h": "c"
     }
 }

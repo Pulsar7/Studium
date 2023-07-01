@@ -64,8 +64,10 @@ void draw_chessboard(Piece *chessboard) {
                 pawn.color = White;
                 name[0] = 'p';
                 name[1] = pawn_counter+'0';
+                printf("[WHITE PAWNN] My name before before: '%s' | My name before: %s\n",pawn.name,name);
                 strcat(pawn.name,name);
                 chessboard[piece_counter] = pawn;
+                printf("Second row\n");
             } else if (i == 6) { // seventh row -> black pawns
                 pawn_counter++;
                 Piece pawn;

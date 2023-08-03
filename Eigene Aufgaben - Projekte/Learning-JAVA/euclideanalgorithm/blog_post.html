@@ -16,9 +16,43 @@
         <h2 id="code">Main.java</h2>
         <p>
             Auch dieses Mal wird wieder das <i>String-Array</i> <b>args</b> aus der <i>main</i>-Funktion benutzt um die Benutzeingabe
-            abzufragen.
+            abzufragen. Da dieses Mal keine zusätzlichen Bibliotheken benötigt werden, beginne ich mit gleich mit der Verarbeitung
+            der Benutzeingabe:
         </p>
         <pre class="prettyprint">
-</pre>
+if (args.length == 2) {
+    char[] first_number = args[0].toCharArray();
+    char[] second_number = args[1].toCharArray();
+    if (check_number(first_number) == true) {
+        if (check_number(second_number) == true) {}
+    }
+}</pre>
+        <p>
+            Auch in diesem Code habe ich das String-Array in ein Char-Array umgeformt, damit die einzelnen Character 
+            in der <b>check_number</b>-Funktion gelesen werden können:
+        </p>
+        <pre class="prettyprint">
+if (((int)c < 48 || (int)c > 57) && c != '+' && c != '-') {
+    valid_number = false;
+    break;
+}</pre>
+        <p>
+            Zuerst soll in der Funktion überprüft werden, ob der einzelne Character eine Zahl zwischen 0 und 9, ein Plus oder ein Minus ist.
+            Sollte das nicht der Fall sein, ist der Character und somit die gesamte Eingabe ungültig.
+        </p>
+        <pre class="prettyprint">
+if (counter > 0 && (c == '+' || c == '-')) {
+    valid_number = false;
+    break;
+}</pre>
+        <p>
+            Nun wird überprüft, ob ein Plus oder ein Minus <b>nicht</b> zu Beginn der Zahl steht. Trifft dieser Fall ein, 
+            ist die Eingabe ebenfalls ungültig. Die nächste und auch letzte <b>if-Abfrage</b> verändert das Vorzeichen vom Minus zum Plus, 
+            da beim Herausfinden des ggT das Vorzeichen hier vernachlässigt wird.
+        </p>
+        <pre class="prettyprint">
+if (c == '-') {
+    number[counter] = '+';
+}</pre>
     </body>
 </html>

@@ -10,6 +10,7 @@ public class Main {
                 if (check_number(second_number) == true) {
                     int numberA = convert_char_number_to_integer(first_number);
                     int numberB = convert_char_number_to_integer(second_number);
+                    // comp_char_number_to_integer(first_number);
                     int result = 0;
                     if (numberA-numberB > 1000 || numberB-numberA > 1000) {
                         result = iterative_euklidic_algorithm(numberA,numberB);
@@ -50,6 +51,14 @@ public class Main {
 
     public static int convert_char_number_to_integer(char[] number) {
         return Integer.parseInt(new String(number));
+    }
+
+    public static int comp_char_number_to_integer(char[] number) {
+        int num = 0;
+        for (char n : number) {
+            num = (num * 10 + (n - 48));
+        }
+        return num;
     }
 
     public static int iterative_euklidic_algorithm(int a, int b) {

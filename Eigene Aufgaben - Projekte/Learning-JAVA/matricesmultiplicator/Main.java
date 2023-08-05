@@ -1,6 +1,7 @@
 package matricesmultiplicator;
 // import matricesmultiplicator.Calculator;
 
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,9 +14,9 @@ public class Main {
                 status = validator.check_matrix(matrixB);
                 if (status == true) {
                     Calculator calculator = new Calculator();
-                    float[] converted_matrixA = calculator.convert_char_matrix_to_float(matrixA);
-                    float[] converted_matrixB = calculator.convert_char_matrix_to_float(matrixB);
-                    float[] result_matrix = calculator.multiply_matrices(converted_matrixA, converted_matrixB);
+                    ArrayList<float[]> converted_matrixA = calculator.convert_char_matrix_to_float(matrixA);
+                    ArrayList<float[]> converted_matrixB = calculator.convert_char_matrix_to_float(matrixB);
+                    ArrayList<float[]> result_matrix = calculator.multiply_matrices(converted_matrixA, converted_matrixB);
                     printout_matrix(result_matrix,calculator);
                 } else {
                     System.out.println("MatrixB is invalid!");
@@ -28,7 +29,7 @@ public class Main {
         }
     }
 
-    public static void printout_matrix(float[] matrix, Calculator calculator) {
+    public static void printout_matrix(ArrayList<float[]> matrix, Calculator calculator) {
         int rows = calculator.get_rows(matrix);
         int columns = calculator.get_columns(matrix);
     }

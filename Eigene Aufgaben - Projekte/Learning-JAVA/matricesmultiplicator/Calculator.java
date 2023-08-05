@@ -7,7 +7,7 @@ public class Calculator {
         int array_len = matrix.length;
         int rows = char_matrix_get_rows(matrix, array_len);
         
-        float[] converted_matrix = {};
+        ArrayList<float[]> converted_matrix = new ArrayList<>();
         for (int i = 0; i < array_len; i++) {
             if (matrix[i] == '[') {
 
@@ -16,8 +16,8 @@ public class Calculator {
         return converted_matrix;
     }
 
-    public float[] multiply_matrices(float[] matrixA, float[] matrixB) {
-        float[] result_matrix = {};
+    public ArrayList<float[]> multiply_matrices(ArrayList<float[]> matrixA, ArrayList<float[]> matrixB) {
+        ArrayList<float[]> result_matrix = new ArrayList<>();
         return result_matrix;
     }
 
@@ -27,13 +27,13 @@ public class Calculator {
         return rows;
     }
 
-    public int get_rows(float[] matrix) {
+    public int get_rows(ArrayList<float[]> matrix) {
         int rows = 0;
         
         return rows;
     }
 
-    public int get_columns(float[] matrix) {
+    public int get_columns(ArrayList<float[]> matrix) {
         int columns = 0;
         return columns;
     }

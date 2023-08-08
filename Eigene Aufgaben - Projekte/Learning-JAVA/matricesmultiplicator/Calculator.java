@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 
 public class Calculator {
-    public ArrayList<float[]> convert_char_matrix_to_float(char[] matrix) {
+
+    public ArrayList<float[]> convert_char_matrix_to_arraylist(char[] matrix) {
         int array_len = matrix.length;
         int rows = char_matrix_get_rows(matrix, array_len);
-        
         ArrayList<float[]> converted_matrix = new ArrayList<>();
         for (int i = 0; i < array_len; i++) {
             if (matrix[i] == '[') {
@@ -22,8 +22,15 @@ public class Calculator {
     }
 
     public int char_matrix_get_rows(char[] matrix, int length) {
-        int rows = 0;
-
+        int rows = 0, square_brackets_counter = 0;
+        for (char element : matrix) {
+            if (element == '[') {
+                if (square_brackets_counter > 0) {
+                    rows++;
+                }
+                square_brackets_counter++;
+            }
+        }
         return rows;
     }
 

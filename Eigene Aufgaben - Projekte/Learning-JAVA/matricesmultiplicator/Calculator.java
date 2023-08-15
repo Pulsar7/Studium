@@ -10,6 +10,8 @@ public class Calculator {
         ArrayList<float[]> converted_matrix = new ArrayList<>();
         for (int i = 0; i < array_len; i++) {
             if (matrix[i] == '[') {
+                // 
+                
 
             }
         }

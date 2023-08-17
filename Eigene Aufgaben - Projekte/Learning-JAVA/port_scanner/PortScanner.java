@@ -2,6 +2,7 @@
  * Simple Port-Scanner in Java
  * 
  *  - Banner Grabber
+ *  - Fuzzing
  */
 package port_scanner;
 import java.io.*;
@@ -16,7 +17,6 @@ public class PortScanner extends Logger {
         }
         String host_ip = args[0], service_name = "";
         int host_port = 0, open_ports = 0;
-        // ServiceGrabber service_gabber = new ServiceGrabber();
         Boolean status = ServiceGrabber.get_all_services();
         if (status == false) {
             return;
@@ -44,14 +44,13 @@ public class PortScanner extends Logger {
     }
 
     public static String get_service(Socket socket, int current_port) {
-        String service_description = "Unknown";
-        // service_description = socket.getInetAddress().getHostName();
+        String service_description = socket.getInetAddress().getHostName(); // default: hostname of device
         String receivedMessage = "";
         try {
             socket.setSoTimeout(10000);
             OutputStream outputStream = socket.getOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(outputStream);
-            String message = "HELLO";
+            String message = "Banner";
             if (ServiceGrabber.services.containsKey(current_port)) {
                 message = ServiceGrabber.services.get(current_port);
             }

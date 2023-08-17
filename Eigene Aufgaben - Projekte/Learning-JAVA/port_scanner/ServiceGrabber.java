@@ -59,7 +59,6 @@ public class ServiceGrabber extends ReadFile {
             return false;
         }
         return true;
-        // services.add(new ServiceInfo(22, "SSH"));
     }
 
 }

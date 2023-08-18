@@ -27,7 +27,7 @@ public class PortScanner extends Logger {
             try {
                 Socket socket = new Socket(host_ip, host_port);
                 open_ports++;
-                service_name = get_service(socket,host_port);
+                service_name = get_service(socket,host_port,host_ip);
                 info("Open Port at "+host_port+" => "+service_name);
                 socket.close();
             } catch (IOException e) {
@@ -43,14 +43,17 @@ public class PortScanner extends Logger {
         info("Scan finished.");
     }
 
-    public static String get_service(Socket socket, int current_port) {
-        String service_description = socket.getInetAddress().getHostName(); // default: hostname of device
+    public static String get_service(Socket socket, int current_port, String current_host) {
+        String service_description = "unknown"; // default: hostname of device
+        if (socket.getInetAddress().getHostName() != current_host) {
+            service_description = socket.getInetAddress().getHostName();
+        }
         String receivedMessage = "";
         try {
             socket.setSoTimeout(10000);
             OutputStream outputStream = socket.getOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(outputStream);
-            String message = "Banner";
+            String message = "Hello world";
             if (ServiceGrabber.services.containsKey(current_port)) {
                 message = ServiceGrabber.services.get(current_port);
             }

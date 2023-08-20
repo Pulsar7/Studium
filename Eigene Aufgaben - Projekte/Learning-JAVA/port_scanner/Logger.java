@@ -1,5 +1,6 @@
 package port_scanner;
 
+
 public class Logger {
     public static String white  = "\u001B[37m";
     public static String reset  = "\u001B[0m";

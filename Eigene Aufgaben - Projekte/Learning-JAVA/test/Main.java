@@ -1,4 +1,4 @@
-package tsat;
+package test;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,6 @@ public class Main {
         printlist(this_list);
     }
 
-    private static void printlist( hallo) {
-
+    private static void printlist(List<?> this_list) {
     }
 }

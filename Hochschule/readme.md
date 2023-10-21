@@ -20,5 +20,7 @@ Programmieren 1. Der Fokus in diesem Ordner liegt auf den Programmiersprachen **
 
 Theoretische Informatik. 
 
+## PG 2
 
+Programmieren 2. Der Fokus in diesem Ordner liegt auf der Programmiersprache **Java**.
 

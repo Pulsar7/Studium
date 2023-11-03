@@ -139,18 +139,23 @@ public class Roulette {
 				bet = scanner.nextInt();
 			} catch (Exception e) {
 				System.out.println("An error occured: "+e.getMessage());
-				if (e.getMessage() == null) {
+				/*if (e.getMessage() == null) {
 					scanner.next();
-				}
+				}*/
+				scanner.next();
 				continue;
 			}
-			if (bet <= player.capital) {
+			if (bet <= player.capital && bet > 0) {
 				if (bet == player.capital) {
 					System.out.println("All in.");
 				}
 				break;
 			} else {
-				System.out.println("You cannot bet more than you have");
+				if (bet > 0) {
+					System.out.println("You cannot bet more than you have");
+				} else {
+					System.out.println("You have to bet an amount!");
+				}
 			}
 		}
 		return bet;

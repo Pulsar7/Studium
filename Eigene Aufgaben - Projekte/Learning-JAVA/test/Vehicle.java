@@ -19,14 +19,24 @@ public class Vehicle {
     }
 
     public static int get_kilometer(Scanner scanner) {
+        int kilometer = -1;
         try {
-            System.out.print("Enter the vehicle-kilometer> ");
-            int kilometer = scanner.nextInt();
-            scanner.nextLine();
-            return kilometer;
+            while (true) {
+                try {
+                    System.out.print("Enter the vehicle-kilometer> ");
+                    kilometer = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (Exception e) {
+                    if (e.getMessage() != null) {
+                        System.out.println("Incorrect.");
+                        scanner.nextLine();
+                    }
+                }
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return -1;
         }
+        return kilometer;
     }
 }

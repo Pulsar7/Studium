@@ -1,11 +1,14 @@
 package test;
-import test.person.Person;
+import java.util.Scanner;
 
 
 public class Main {
+    public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Person person = new Person("Alice", 30, false);
-
-        person.put_hand_up();
+        Car car_1 = new Car(Vehicle.get_label(scanner),Vehicle.get_kilometer(scanner));
+        Car car_2 = new Car(Vehicle.get_label(scanner),Vehicle.get_kilometer(scanner));
+        
+        
+        scanner.close();
     }
 }

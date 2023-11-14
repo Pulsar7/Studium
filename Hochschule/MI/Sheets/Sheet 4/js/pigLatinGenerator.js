@@ -3,7 +3,7 @@ let vocals = [
 ];
 
 let special_chars = [
-    "!","-",":",".","?","=","+","*","~","#"
+    "!","-",":",".","?","=","+","*","~","#","/","`","@","#","_",",",";",'"',"'"
 ];
 
 
@@ -19,14 +19,14 @@ function generate_pig_latin() {
     let new_pig_latin_text = "";
     for (let i = 0; i < words.length; i++) {
         if (no_special_chars(words[i])) {
-            if (vocals.includes(words[i][0])) {
+            if (vocals.includes(words[i][0].toLowerCase())) {
                 words[i] += "yay";
             } else {
-                if (vocals.includes(words[i][1]) || anywhere_vocal(words[i])) {
-                    words[i] += words[i][0];
-                    words[i] = words[i].slice(0,0)+words[i].slice(1,words[i].length);
-                    words[i] += "ay";
-                }
+                // if (vocals.includes(words[i][1].toLowerCase()) || anywhere_vocal(words[i].toLowerCase())) {
+                words[i] += words[i][0];
+                words[i] = words[i].slice(0,0)+words[i].slice(1,words[i].length);
+                words[i] += "ay";
+                // }
             }
         }
         if (i > 0) {
@@ -39,6 +39,11 @@ function generate_pig_latin() {
 }
 
 function anywhere_vocal(word) {
+    /*
+        Search for vocal in the word
+        
+        # Probably not required
+    */
     for (let i = 0; i < vocals.length; i++) {
         if (word.includes(vocals[i])) {
             return true;
@@ -48,6 +53,9 @@ function anywhere_vocal(word) {
 }
 
 function no_special_chars(word) {
+    /*
+        Search for special character in word
+    */
     for (let i = 0; i < special_chars.length; i++) {
         if (word.includes(special_chars[i])) {
             return false;

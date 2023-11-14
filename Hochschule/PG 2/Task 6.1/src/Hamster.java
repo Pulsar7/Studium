@@ -6,6 +6,7 @@ public class Hamster {
     public Body body;
     public int eaten_grains;
     public int speed;
+    public int rotation;
 
     public Hamster() {
         this.body = new Body();

@@ -4,13 +4,13 @@ import java.lang.Thread;
 
 public class Main {
     public static Hamster hamster;
-    public static int refresh_rate = 70; // in milliseconds
+    public static int refresh_rate = 50; // in milliseconds
     public static Boolean running = true;
     public static Drawer drawer;
 
     public static void main(String[] args) {
         hamster = new Hamster();
-        Map map = new Map(50,30);
+        Map map = new Map(50,20);
         drawer = new Drawer(map,hamster);
         run();
     }
@@ -21,20 +21,27 @@ public class Main {
             try {
                 drawer.draw_map();
                 keyPressed = get_key_pressed();
-                if (keyPressed == 'Q' || keyPressed == 'q') {
+                if (keyPressed == '5') {
                     System.out.println("Exit.");
                     running = false;
                 }
-                if (keyPressed == 'W' || keyPressed == 'w') {
+                if (keyPressed == '3') {
                     drawer.go_forward();
                 }
-                if (keyPressed == 'S' || keyPressed == 's') {
+                /*
+                // Backward option - EXTRA
+
+                if (keyPressed == '6') {
                     drawer.go_backward();
                 }
-                if (keyPressed == 'A' || keyPressed == 'a') {
+                */
+                if (keyPressed == '4') {
+                    System.out.println("You ate "+hamster.eaten_grains+" grains");
+                }
+                if (keyPressed == '1') {
                     drawer.rotate_left();
                 }
-                if (keyPressed == 'D' || keyPressed == 'd') {
+                if (keyPressed == '2') {
                     drawer.rotate_right();
                 }
                 drawer.update_hamster();
@@ -54,6 +61,19 @@ public class Main {
          * Returns the pressed key
          */
         char key = '\0';
+        String[] options = {
+            "Rotate Left",
+            "Rotate Right",
+            "Go Forward",
+            "Show eaten grains",
+            "Exit",
+            // "Go Backward", // EXTRA
+        };
+        int counter = 0;
+        for (String option : options) {
+            counter++;
+            System.out.println("( " + counter + " ) "+option);
+        }
         System.out.print("Enter you option> ");
         try {
             // Check if a key is available in the input stream
@@ -64,7 +84,6 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return key;
     }
 }

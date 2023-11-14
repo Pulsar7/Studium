@@ -12,7 +12,7 @@ public class Body {
 
     public String get_body_element(BodyType body_type) {
         if (body_type == BodyType.LEFT) {
-            return ">";
+            return "<";
         }
 
         if (body_type == BodyType.RIGHT) {

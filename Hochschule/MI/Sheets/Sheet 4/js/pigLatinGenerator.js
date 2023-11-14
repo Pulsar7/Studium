@@ -9,12 +9,21 @@ let special_chars = [
 
 
 function init() {
-    console.log("Hello World");    
+    let generated_elements = generate_pig_latin(document.getElementById("input_sentence").value);
+    if (generated_elements.length > 0) {
+        output_pig_latin_text(generated_elements);
+    }
 }
 
 
-function generate_pig_latin() {
-    var input_text = document.getElementById("input_sentence").value;
+function output_pig_latin_text(text) {
+    document.getElementById("pig_latin_output").innerText = text;
+}
+
+function generate_pig_latin(input_text) {
+    /*
+        Generate pig-latin
+    */
     let words = input_text.split(" ");
     let new_pig_latin_text = "";
     for (let i = 0; i < words.length; i++) {
@@ -34,8 +43,7 @@ function generate_pig_latin() {
         }
         new_pig_latin_text += words[i];
     }
-
-    document.getElementById("pig_latin_output").innerText = new_pig_latin_text;
+    return new_pig_latin_text;
 }
 
 function anywhere_vocal(word) {

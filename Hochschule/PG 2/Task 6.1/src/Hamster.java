@@ -1,5 +1,4 @@
 package src;
-import src.Body.BodyType;
 
 
 public class Hamster {
@@ -9,7 +8,6 @@ public class Hamster {
     public int speed;
 
     public Hamster() {
-        // this.position = new Position(0, 0);
         this.body = new Body();
         this.eaten_grains = 0;
         this.speed = 1;

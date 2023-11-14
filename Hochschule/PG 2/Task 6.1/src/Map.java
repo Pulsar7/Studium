@@ -14,12 +14,12 @@ public class Map {
     public Wall wall = new Wall();
     public Grain grain = new Grain();
     public Air air = new Air();
-    public Position hamster_position;
+    public Position last_hamster_position;
 
     public Map(int window_width, int window_height) {
         this.window_width = window_width;
         this.window_height = window_height;
-        this.hamster_position = new Position(3,3);
+        this.last_hamster_position = new Position(3,3);
         this.matrix = new MapElement[window_height][window_width];
     }
 
@@ -33,6 +33,6 @@ public class Map {
                 }
             }
         }
-        matrix[hamster_position.y][hamster_position.x] = MapElement.HAMSTER;
+        matrix[last_hamster_position.y][last_hamster_position.x] = MapElement.HAMSTER;
     }
 }

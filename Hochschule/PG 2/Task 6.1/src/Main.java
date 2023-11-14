@@ -4,7 +4,7 @@ import java.lang.Thread;
 
 public class Main {
     public static Hamster hamster;
-    public static int refresh_rate = 80; // in milliseconds
+    public static int refresh_rate = 280; // in milliseconds
     public static Boolean running = true;
     public static Drawer drawer;
 
@@ -17,13 +17,13 @@ public class Main {
 
     public static void run() {
         int counter = 0;
-        while (running) {
+        while (running && counter < 10) {
             try {
                 drawer.draw_map();
                 if (counter > 0) {
                     drawer.go_right();
+                    drawer.update_hamster();
                 }
-                drawer.update_hamster();
                 Thread.sleep(refresh_rate);
                 counter++;
             } catch (InterruptedException e) {

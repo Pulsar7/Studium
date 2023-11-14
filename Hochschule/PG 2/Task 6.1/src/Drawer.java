@@ -10,7 +10,7 @@ public class Drawer {
     public Drawer(Map map, Hamster hamster) {
         this.map = map;
         this.hamster = hamster;
-        this.hamster.position = this.map.hamster_position;
+        this.hamster.position = new Position(this.map.last_hamster_position.x,this.map.last_hamster_position.y);
         this.map.create_map();
     }
 
@@ -33,7 +33,10 @@ public class Drawer {
          * 1. Clears the screen
          * 2. Iterates the rows of the Map-Matrix
          * 3. Iterates the columns of the Map-Matrix
+         * 4. Edits several elements in the Map-Matrix
          * 
+         * 
+         * returns nothing but suffer...
          */
         clearScreen();
         for (int row = 0; row < map.window_height; row++) {
@@ -53,6 +56,9 @@ public class Drawer {
             }
             System.out.print("\n");
         }
+        // Replaces the current saved hamster-position
+        map.last_hamster_position.x = hamster.position.x;
+        map.last_hamster_position.y = hamster.position.y;
     }
 
     public void destroy_element(int row, int column) {
@@ -60,8 +66,14 @@ public class Drawer {
     }
 
     public void update_hamster() {
-        destroy_element(map.hamster_position.y,map.hamster_position.x);
-        map.hamster_position = hamster.position;
+        /*
+         * 
+         * Updates the current position of the hamster in the Map-Matrix
+         * 
+         */
+        // Destroys the current saved hamster-position in the Map-Matrix
+        destroy_element(map.last_hamster_position.y,map.last_hamster_position.x);
+        // Updates the coordinates of the hamster in the Map-Matrix
         map.matrix[hamster.position.y][hamster.position.x] = MapElement.HAMSTER;
     }
 

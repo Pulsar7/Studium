@@ -11,6 +11,11 @@ public class Body {
     }
 
     public String get_body_element(BodyType body_type) {
+        /*
+         * Returns the current Body-Element as a 'String'
+         * 
+         * 
+         */
         if (body_type == BodyType.LEFT) {
             return "<";
         }

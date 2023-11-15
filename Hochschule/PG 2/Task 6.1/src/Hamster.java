@@ -11,7 +11,7 @@ public class Hamster {
     public Hamster() {
         this.body = new Body();
         this.eaten_grains = 0;
-        this.speed = 1;
+        this.speed = 1; // default
     }
 
     public void eat_grain() {

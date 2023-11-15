@@ -16,17 +16,35 @@ public class Main {
     }
 
     public static void run() {
+        /*
+         * Handling the Main-Game-Loop
+         * 
+         * 
+         */
         char keyPressed;
         while (running) {
             try {
-                drawer.draw_map();
+                drawer.draw_map(); // Updates Map-Objects
                 keyPressed = get_key_pressed();
+                if (keyPressed == '1') {
+                    drawer.rotate_left();
+                }
+                
+                if (keyPressed == '2') {
+                    drawer.rotate_right();
+                }
+                
+                if (keyPressed == '3') {
+                    drawer.go_forward();
+                }
+                
+                if (keyPressed == '4') {
+                    System.out.println("You ate "+hamster.eaten_grains+" grains");
+                }
+                
                 if (keyPressed == '5') {
                     System.out.println("Exit.");
                     running = false;
-                }
-                if (keyPressed == '3') {
-                    drawer.go_forward();
                 }
                 /*
                 // Backward option - EXTRA
@@ -35,18 +53,9 @@ public class Main {
                     drawer.go_backward();
                 }
                 */
-                if (keyPressed == '4') {
-                    System.out.println("You ate "+hamster.eaten_grains+" grains");
-                }
-                if (keyPressed == '1') {
-                    drawer.rotate_left();
-                }
-                if (keyPressed == '2') {
-                    drawer.rotate_right();
-                }
-                drawer.update_hamster();
+                drawer.update_hamster(); // Updates Hamster- position & appearance
                 Thread.sleep(refresh_rate);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e) { // thrown by 'Thread.sleep'
                 running = false;
             }
         }
@@ -56,6 +65,8 @@ public class Main {
         /*
          * 
          * Capture Keyboard-Input
+         * 
+         * - Problem: User has to press 'enter' in order confirm the input
          * 
          * 
          * Returns the pressed key

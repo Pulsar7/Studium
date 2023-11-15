@@ -62,6 +62,7 @@ public class Drawer {
     }
 
     public void destroy_element(int row, int column) {
+        // Destroys element by replacing its label with the AIR-Element-Label
         map.matrix[row][column] = MapElement.AIR;
     }
 
@@ -142,9 +143,13 @@ public class Drawer {
         return false;
     }
 
-    // EXTRA - Not required
-
     public boolean go_backward() {
+        /*
+         * EXTRA-Method - Not required
+         * Part of an improved version of this game.
+         * 
+         * 
+         */
         if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.LEFT)) {
             // User wants to go backward in the right-direction
             return go_right();

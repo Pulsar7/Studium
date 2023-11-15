@@ -24,6 +24,13 @@ public class Map {
     }
 
     public void create_map() {
+        /*
+         * BASIC-MAP
+         * 
+         * Wall around the edges
+         * 
+         * 
+         */
         for (int row = 0; row < window_height; row++) {
             for (int column = 0; column < window_width; column++) {
                 if (row == 0 || column == 0 || row == window_height-1 || column == window_width-1) {
@@ -33,6 +40,7 @@ public class Map {
                 }
             }
         }
+        // Sets First-Hamster-Position in MAP
         matrix[last_hamster_position.y][last_hamster_position.x] = MapElement.HAMSTER;
     }
 }

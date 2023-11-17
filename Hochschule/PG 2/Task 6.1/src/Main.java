@@ -4,13 +4,13 @@ import java.lang.Thread;
 
 public class Main {
     public static Hamster hamster;
-    public static int refresh_rate = 50; // in milliseconds
+    public static int refresh_rate = 80; // in milliseconds
     public static Boolean running = true;
     public static Drawer drawer;
 
     public static void main(String[] args) {
         hamster = new Hamster();
-        Map map = new Map(50,20);
+        Map map = new Map(11,8);
         drawer = new Drawer(map,hamster);
         run();
     }
@@ -19,6 +19,7 @@ public class Main {
         /*
          * Handling the Main-Game-Loop
          * 
+         * Problem: If user types for example: '1111' and presses enter, the 'rotate_left'-Method is called four times.
          * 
          */
         char keyPressed;
@@ -39,7 +40,7 @@ public class Main {
                 }
                 
                 if (keyPressed == '4') {
-                    System.out.println("You ate "+hamster.eaten_grains+" grains");
+                    drawer.show_ate_grains_counter = 100;
                 }
                 
                 if (keyPressed == '5') {

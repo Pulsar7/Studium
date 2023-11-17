@@ -6,12 +6,14 @@ import src.Map.MapElement;
 public class Drawer {
     public Map map;
     public Hamster hamster;
+    public int show_ate_grains_counter;
 
     public Drawer(Map map, Hamster hamster) {
         this.map = map;
         this.hamster = hamster;
         this.hamster.position = new Position(this.map.last_hamster_position.x,this.map.last_hamster_position.y);
         this.map.create_map();
+        this.show_ate_grains_counter = 0;
     }
 
 
@@ -59,6 +61,11 @@ public class Drawer {
         // Replaces the current saved hamster-position
         map.last_hamster_position.x = hamster.position.x;
         map.last_hamster_position.y = hamster.position.y;
+        // Shows ate grains if counter > 0
+        if (this.show_ate_grains_counter > 0) {
+            System.out.println("You ate "+hamster.eaten_grains+" grains");
+            this.show_ate_grains_counter -= 1;
+        }
     }
 
     public void destroy_element(int row, int column) {
@@ -75,6 +82,9 @@ public class Drawer {
         // Destroys the current saved hamster-position in the Map-Matrix
         destroy_element(map.last_hamster_position.y,map.last_hamster_position.x);
         // Updates the coordinates of the hamster in the Map-Matrix
+        if (map.matrix[hamster.position.y][hamster.position.x] == MapElement.GRAIN) {
+            this.hamster.eaten_grains++;
+        }
         map.matrix[hamster.position.y][hamster.position.x] = MapElement.HAMSTER;
     }
 

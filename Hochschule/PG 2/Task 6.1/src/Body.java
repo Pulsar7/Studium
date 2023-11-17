@@ -7,7 +7,7 @@ public class Body {
     public String current_body_element;
 
     public Body() {
-        this.current_body_element = get_body_element(BodyType.UP);
+        this.current_body_element = get_body_element(BodyType.LEFT);
     }
 
     public String get_body_element(BodyType body_type) {

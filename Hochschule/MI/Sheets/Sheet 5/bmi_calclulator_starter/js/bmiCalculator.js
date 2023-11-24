@@ -9,9 +9,12 @@ function update_bmi() {
     let result_container = document.getElementById("bmi_result_value");
     let result_text = document.getElementById("bmi_result_text");
 
+    // Set default html-content 
     result_text.style.color = "black";
     result_container.innerText = "/";
     result_text.innerText = "-";
+    //
+
     if (weight <= 0 || height <= 0 || isNaN(weight) || isNaN(height)) { // || weight.length == 0 || height.length == 0) {
         return
     }

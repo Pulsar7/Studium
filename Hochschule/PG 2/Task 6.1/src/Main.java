@@ -1,6 +1,12 @@
 package src;
 import java.lang.Thread;
 
+/*
+ * 
+ * I used ANSI-Escape-Codes '\033[H\033[2J' in order to "clear" the screen. 
+ * However, for this function to work, I would recommend running the program in a terminal/console.
+ * 
+ */
 
 public class Main {
     public static Hamster hamster;

@@ -7,6 +7,13 @@ public class Main {
     public static int refresh_rate = 80; // in milliseconds
     public static Boolean running = true;
     public static Drawer drawer;
+    public static String[] key_options = {
+        "Press W/w to walk forward",
+        "Press A/a to rotate left",
+        "Press D/d to rotate right",
+        "Press S/s to show the eaten grains",
+        "Press E/e to exit"
+    };
 
     public static void main(String[] args) {
         hamster = new Hamster();
@@ -26,24 +33,25 @@ public class Main {
         while (running) {
             try {
                 drawer.draw_map(); // Updates Map-Objects
+                show_help();
                 keyPressed = get_key_pressed();
-                if (keyPressed == '1') {
+                if (keyPressed == 'a' || keyPressed == 'A') {
                     drawer.rotate_left();
                 }
                 
-                if (keyPressed == '2') {
+                if (keyPressed == 'd' || keyPressed == 'D') {
                     drawer.rotate_right();
                 }
                 
-                if (keyPressed == '3') {
+                if (keyPressed == 'w' || keyPressed == 'W') {
                     drawer.go_forward();
                 }
                 
-                if (keyPressed == '4') {
+                if (keyPressed == 's' || keyPressed == 'S') {
                     drawer.show_ate_grains_counter = 100;
                 }
                 
-                if (keyPressed == '5') {
+                if (keyPressed == 'e' || keyPressed == 'E') {
                     System.out.println("Exit.");
                     running = false;
                 }
@@ -62,6 +70,15 @@ public class Main {
         }
     }
 
+    private static void show_help() {
+        int counter = 1;
+        for (String option : key_options) {
+            System.out.println("("+counter+") "+option);
+            counter++;
+        }
+        System.out.println(": Don't forget to press enter.");
+    }
+
     private static char get_key_pressed() {
         /*
          * 
@@ -73,19 +90,6 @@ public class Main {
          * Returns the pressed key
          */
         char key = '\0';
-        String[] options = {
-            "Rotate Left",
-            "Rotate Right",
-            "Go Forward",
-            "Show eaten grains",
-            "Exit",
-            // "Go Backward", // EXTRA
-        };
-        int counter = 0;
-        for (String option : options) {
-            counter++;
-            System.out.println("( " + counter + " ) "+option);
-        }
         System.out.print("Enter you option> ");
         try {
             // Check if a key is available in the input stream

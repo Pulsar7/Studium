@@ -48,6 +48,12 @@ public class Map {
         matrix[window_height-3][5] = MapElement.GRAIN;
         matrix[window_height-4][5] = MapElement.WALL;
         matrix[window_height-4][6] = MapElement.WALL;
+        matrix[window_height-3][5] = MapElement.WALL;
+        matrix[window_height-5][3] = MapElement.WALL;
+        matrix[window_height-5][1] = MapElement.WALL;
+        matrix[1][5] = MapElement.GRAIN;
+        matrix[2][4] = MapElement.GRAIN;
+        matrix[3][2] = MapElement.WALL;
 
         // Sets First-Hamster-Position in MAP
         matrix[last_hamster_position.y][last_hamster_position.x] = MapElement.HAMSTER;

@@ -219,6 +219,28 @@ public class Drawer {
     public boolean rotate_left() {
         String new_body_element = "";
         if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.LEFT)) {
+            // Rotates from LEFT to DOWN
+            new_body_element = hamster.body.get_body_element(BodyType.DOWN);
+        }
+        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.DOWN)) {
+            // Rotates from DOWN to RIGHT
+            new_body_element = hamster.body.get_body_element(BodyType.RIGHT);
+        }
+        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.RIGHT)) {
+            // Rotates from RIGHT to UP
+            new_body_element = hamster.body.get_body_element(BodyType.UP);
+        }
+        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.UP)) {
+            // Rotates from UP to LEFT
+            new_body_element = hamster.body.get_body_element(BodyType.LEFT);
+        }
+        hamster.body.current_body_element = new_body_element;
+        return true;
+    }
+
+    public boolean rotate_right() {
+        String new_body_element = "";
+        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.LEFT)) {
             // Rotates from LEFT to UP
             new_body_element = hamster.body.get_body_element(BodyType.UP);
         }
@@ -232,24 +254,6 @@ public class Drawer {
         }
         if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.DOWN)) {
             // Rotates from DOWN to LEFT
-            new_body_element = hamster.body.get_body_element(BodyType.LEFT);
-        }
-        hamster.body.current_body_element = new_body_element;
-        return true;
-    }
-
-    public boolean rotate_right() {
-        String new_body_element = "";
-        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.LEFT)) {
-            new_body_element = hamster.body.get_body_element(BodyType.DOWN);
-        }
-        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.DOWN)) {
-            new_body_element = hamster.body.get_body_element(BodyType.RIGHT);
-        }
-        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.RIGHT)) {
-            new_body_element = hamster.body.get_body_element(BodyType.UP);
-        }
-        if (hamster.body.current_body_element == hamster.body.get_body_element(BodyType.UP)) {
             new_body_element = hamster.body.get_body_element(BodyType.LEFT);
         }
         hamster.body.current_body_element = new_body_element;

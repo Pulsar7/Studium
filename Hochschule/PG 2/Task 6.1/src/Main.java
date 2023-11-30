@@ -1,10 +1,14 @@
 package src;
-import java.lang.Thread;
+import java.util.Scanner;
 
 /*
  * 
  * I used ANSI-Escape-Codes '\033[H\033[2J' in order to "clear" the screen. 
- * However, for this function to work, I would recommend running the program in a terminal/console.
+ * 
+ * Improved Version:
+ * 
+ *      - Just update the entities on the map when user presses enter
+ *      - No need for 'Thread'
  * 
  */
 
@@ -12,7 +16,10 @@ public class Main {
     public static Hamster hamster;
     public static int refresh_rate = 80; // in milliseconds
     public static Boolean running = true;
+    public static int map_window_width = 30;
+    public static int map_window_height = 10;
     public static Drawer drawer;
+    public static Scanner scanner;
     public static String[] key_options = {
         "Press W/w to walk forward",
         "Press A/a to rotate left",
@@ -23,8 +30,9 @@ public class Main {
 
     public static void main(String[] args) {
         hamster = new Hamster();
-        Map map = new Map(11,8);
+        Map map = new Map(map_window_width,map_window_height);
         drawer = new Drawer(map,hamster);
+        scanner = new Scanner(System.in);
         run();
     }
 
@@ -32,51 +40,41 @@ public class Main {
         /*
          * Handling the Main-Game-Loop
          * 
-         * Problem: If user types for example: '1111' and presses enter, the 'rotate_left'-Method is called four times.
+         * - Improved Version: Without 'time.sleep'
          * 
          */
-        char keyPressed;
+        String keyPressed;
         while (running) {
-            try {
-                drawer.draw_map(); // Updates Map-Objects
-                show_help();
-                keyPressed = get_key_pressed();
-                if (keyPressed == 'a' || keyPressed == 'A') {
-                    drawer.rotate_left();
-                }
-                
-                if (keyPressed == 'd' || keyPressed == 'D') {
-                    drawer.rotate_right();
-                }
-                
-                if (keyPressed == 'w' || keyPressed == 'W') {
-                    drawer.go_forward();
-                }
-                
-                if (keyPressed == 's' || keyPressed == 'S') {
-                    drawer.show_ate_grains_counter = 100;
-                }
-                
-                if (keyPressed == 'e' || keyPressed == 'E') {
-                    System.out.println("Exit.");
-                    running = false;
-                }
-                /*
-                // Backward option - EXTRA
-
-                if (keyPressed == '6') {
-                    drawer.go_backward();
-                }
-                */
-                drawer.update_hamster(); // Updates Hamster- position & appearance
-                Thread.sleep(refresh_rate);
-            } catch (InterruptedException e) { // thrown by 'Thread.sleep'
+            drawer.draw_map(); // Updates Map-Objects
+            show_help();
+            keyPressed = get_key_pressed().toUpperCase();
+            if (keyPressed.equals("A")) {
+                drawer.rotate_left();
+            }
+            
+            if (keyPressed.equals("D")) {
+                drawer.rotate_right();
+            }
+            
+            if (keyPressed.equals("W")) {
+                drawer.go_forward();
+            }
+            
+            if (keyPressed.equals("S")) {
+                drawer.show_ate_grains_counter = 100;
+            }
+            
+            if (keyPressed.equals("E")) {
+                System.out.println("Exit.");
                 running = false;
             }
+            drawer.update_hamster(); // Updates Hamster- position & appearance
         }
+        scanner.close();
     }
 
     private static void show_help() {
+        System.out.println("");
         int counter = 1;
         for (String option : key_options) {
             System.out.println("("+counter+") "+option);
@@ -85,7 +83,7 @@ public class Main {
         System.out.println(": Don't forget to press enter.");
     }
 
-    private static char get_key_pressed() {
+    private static String get_key_pressed() {
         /*
          * 
          * Capture Keyboard-Input
@@ -95,17 +93,8 @@ public class Main {
          * 
          * Returns the pressed key
          */
-        char key = '\0';
         System.out.print("Enter you option> ");
-        try {
-            // Check if a key is available in the input stream
-            if (System.in.available() > 0) {
-                // Read the key
-                key = (char) System.in.read();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String key = scanner.nextLine();
         return key;
     }
 }

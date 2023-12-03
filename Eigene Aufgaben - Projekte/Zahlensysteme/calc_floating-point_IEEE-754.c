@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "src/logger.h"
 #include <math.h>
+#include <stdlib.h>
 
 
 void signed_bit(float user_input, char* complete_number) {
@@ -12,7 +13,17 @@ void signed_bit(float user_input, char* complete_number) {
 void convert_int_decimal_to_binary(char* number_in_binary, int number) {
     char decimal_char_number[sizeof(int)*8];
     char* rest = (char*)malloc(sizeof(int)*8);
-    if (rest == NULL) {
+    BOOLEAN need_twos_complement = false;
+    if (rest != NULL) {
+        if (number < 0) {
+            number = -(number); // Make the number positive
+            need_twos_complement = true;
+        }
+        printf("NUMBER: %d\n",number);
+        if (need_twos_complement == true) {
+            printf("Two's complement!");
+        }
+    } else {
         printf("Space-allocation failed with malloc\n");
         return;
     }

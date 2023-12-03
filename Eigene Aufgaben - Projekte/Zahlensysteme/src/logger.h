@@ -3,7 +3,7 @@
 
 
 //
-typedef enum {
+typedef enum BOOLEAN {
     true = 0,
     false = 0
 } BOOLEAN;

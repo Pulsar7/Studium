@@ -99,7 +99,7 @@ main:
     pushq %rbp
     movq %rsp, %rbp
 
-    movq $3, %rdi   # x
+    movq $1, %rdi   # x
     movq $2, %rsi   # y
     movq $3, %rdx   # z
     call calc_func

@@ -21,13 +21,15 @@ add_func:
     pushq %rsi
     pushq %rdx
 
-    movq %rdx, %r14
+    movq %rdx, %r14                     # save %rdx
     addq %rsi, %rdx
     movq %rdx, %rax
-    pushq %rax
+    pushq %rax                          # save %rax
     # printf
     movq $add_text, %rdi
-    movq %r14, %rdx
+    movq %rsi, %rdx
+    movq %r14, %rsi
+
     call printf
 
     popq %rax
@@ -45,12 +47,13 @@ sub_func:
     pushq %rdx
 
     movq %rdx, %r14
-    subq %rsi, %rdx
+    subq %rsi, %rdx                     # z - y
     movq %rdx, %rax
     pushq %rax
     # printf
-    movq $add_text, %rdi
-    movq %r14, %rdx
+    movq $sub_text, %rdi
+    movq %rsi, %rdx
+    movq %r14, %rsi
     call printf
 
     popq %rax
@@ -96,8 +99,8 @@ main:
     pushq %rbp
     movq %rsp, %rbp
 
-    movq $2, %rdi   # x
-    movq $1, %rsi   # y
+    movq $3, %rdi   # x
+    movq $2, %rsi   # y
     movq $3, %rdx   # z
     call calc_func
        

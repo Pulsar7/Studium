@@ -1,7 +1,7 @@
 .section .rodata
 
 result_text:
-    .asciz "intarr[0] + intarr[1] = %d\n"
+    .asciz "%d + %d = %d\n"
 
 .section .data
 
@@ -20,8 +20,9 @@ add_func:
     movl (%rdx, %rcx, 4), %r14d                     # loads value of element at index 0 of array in %r14d
     # intarr[2]
     addq $1, %rcx                                   # index
-    movl (%rdx, %rcx, 4), %eax                      # loads value of element at index 1 of array in %eax
+    movl (%rdx, %rcx, 4), %r15d                     # loads value of element at index 1 of array in %eax
 
+    movl %r15d, %eax
     addl %r14d, %eax
     cltq                                            # Convert long to quadword (Signed-Extend)
 
@@ -29,7 +30,9 @@ add_func:
     pushq %rax                                      # Save %rax for return
 
     movq $result_text, %rdi
-    movq %rax, %rsi 
+    movl %r14d, %esi
+    movl %r15d, %edx 
+    movq %rax, %rcx
     call printf
 
     popq %rax

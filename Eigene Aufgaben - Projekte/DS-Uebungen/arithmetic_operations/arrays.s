@@ -6,7 +6,7 @@ result_text:
 .section .data
 
 intarr:
-    .int 1, 2, 3, 4, 5, 6, 7, 8, 9, 10              # 10 Elements
+    .int 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
 .section .text
 
@@ -20,7 +20,7 @@ add_func:
     movl (%rdx, %rcx, 4), %r14d                     # loads value of element at index 0 of array in %r14d
     # intarr[2]
     addq $1, %rcx                                   # index
-    movl (%rdx, %rcx, 4), %r15d                     # loads value of element at index 1 of array in %eax
+    movl (%rdx, %rcx, 4), %r15d                     # loads value of element at index 1 of array in %r15d
 
     movl %r15d, %eax
     addl %r14d, %eax

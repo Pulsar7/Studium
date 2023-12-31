@@ -21,15 +21,15 @@ add_func:
     pushq %rsi
     pushq %rdx
 
-    movq %rdx, %r14                     # save %rdx
-    addq %rsi, %rdx
-    movq %rdx, %rax
-    pushq %rax                          # save %rax
+    movq %rdx, %r14                     # save %rdx in %r14 (Callee saved)
+    addq %rsi, %rdx                     # y + z
+    movq %rdx, %rax                     # Move result of addition in %rax
+    pushq %rax
+
     # printf
     movq $add_text, %rdi
     movq %rsi, %rdx
     movq %r14, %rsi
-
     call printf
 
     popq %rax
@@ -46,10 +46,11 @@ sub_func:
     pushq %rsi
     pushq %rdx
 
-    movq %rdx, %r14
+    movq %rdx, %r14                     # Save %rdx in %r14 (Callee saved)
     subq %rsi, %rdx                     # z - y
-    movq %rdx, %rax
+    movq %rdx, %rax                     # Move result of subtraction in %rax
     pushq %rax
+    
     # printf
     movq $sub_text, %rdi
     movq %rsi, %rdx
@@ -66,9 +67,10 @@ sub_func:
 .type calc_func, @function
 
 calc_func:
+    
     cmpq %rdi, %rsi
-    jge .L1 # y (%rsi) >= x (%rdi)?
-    jmp .L2 
+    jge .L1                             # y (%rsi) >= x (%rdi)?
+    jmp .L2                             # y (%rsi) < x (%rdi)?
     ret
 
 .L1:
@@ -80,15 +82,16 @@ calc_func:
 
 .RESULT:
     # printf
-    movq %rsp, %r14
-    andq $0xFFFFFFFFFFFFFFF0, %rsp   # align stack
+    movq %rsp, %r14                     # save %rsp in %r14 (Callee saved)
+    andq $0xFFFFFFFFFFFFFFF0, %rsp      # align stack to 16 Bytes
 
-    movq %rax, %r8
-    movq %rdx, %rcx
-    movq %rsi, %rdx
-    movq %rdi, %rsi
-    movq $result_text, %rdi
+    movq %rax, %r8                      # 5. (Result of calculation)
+    movq %rdx, %rcx                     # 4. (z)
+    movq %rsi, %rdx                     # 3. (y)
+    movq %rdi, %rsi                     # 2. (x)
+    movq $result_text, %rdi             # 1. (printout-string)
     call printf
+
     movq %r14, %rsp
     ret
 
@@ -99,13 +102,20 @@ main:
     pushq %rbp
     movq %rsp, %rbp
 
-    movq $1, %rdi   # x
-    movq $2, %rsi   # y
-    movq $3, %rdx   # z
+    subq $24, %rsp                      # allocate 24-Bytes on stack
+    movq $1, 16(%rsp)                   # x
+    movq $2, 8(%rsp)                    # y
+    movq $3, (%rsp)                     # z
+    
+    # write effective addr to registers as func-params
+    leaq 16(%rsp), %rdi              
+    leaq 8(%rsp), %rsi                
+    leaq (%rsp), %rcx
     call calc_func
-       
+    
 
     # exit
+    addq $24, %rsp                      # free space on stack (Deallocate)
     popq %rbp
     movq $0, %rax
     ret

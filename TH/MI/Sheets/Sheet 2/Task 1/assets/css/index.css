@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: sans-serif;
+    color: black;
+    line-height: 1.5;
+}
+
+/* HEAD */
+
+header {
+    padding: 7px 30px;
+    background-color: rgb(150, 84, 211);
+    color: whitesmoke;
+    margin-bottom: 2%;
+}
+
+
+
+/* CONTENT */
+
+.content {
+    max-width: 100%;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: row; /* Default */
+    justify-content: center;
+
+}
+
+.card {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    border: none;
+    height: 500px;
+    margin: 10px 20px;
+    padding: 15px 25px;
+    max-width: 100%;
+    width: 100%;
+    overflow: scroll;
+    box-shadow: none;
+    transition-duration: 0.3s;
+}
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition-duration: 0.3s;
+}
+
+.card img {
+    border-radius: 125px;
+    width: 200px;
+    object-fit: contain;
+    margin-right: 20px;
+    height: 200px;
+    transition-duration: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.card img:hover {
+    transition-duration: 0.3s;
+    box-shadow: none;
+}
+
+.card p, .card li {
+    font-size: 1.2rem;
+    font-family: monospace;
+}
+
+
+.left {
+    margin-right: 5%;
+}
+
+.flexcontent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+/* FOOT */
+
+footer {
+    text-align: center;
+    background-color: blueviolet;
+    color: whitesmoke;
+    padding: 3px 10px;
+    bottom: 0;
+    font-size: 1.2rem;
+    position: absolute;
+    width: 100%;
+    
+}
